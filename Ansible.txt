@@ -1,0 +1,37 @@
+Ansible Installation
+----------------------
+
+Master----54.172.120.69----172.31.29.177 -----ansible
+
+Node1----54.221.165.124----172.31.28.210
+
+Node2---- 52.205.76.171---172.31.22.202
+webservers
+
+
+1. SSH Passwordless Authentication
+Run command from MASTER server
+
+#  ssh-keygen -t rsa
+
+Copy MASTER server SSH to NODE servers
+# ssh-copy-id root@<NODE1 IP>
+# ssh-copy-id root@<NODE2 IP>
+
+2.Ansible installation
+
+# yum update -y 
+#yum install ansible -y
+
+Note : If ansible is not available in repo , enable your EPEL repo and install 
+# yum install ansible --enablerepo=epel
+
+
+3. Configuration
+Add you NODE servers in ansible hosts file
+# vi /etc/ansible/hosts
+
+Test you node serverss from Ansible controller server
+#ansible -m ping  -all
+Run simple command
+#ansible  -m command  -a "ifconfig"  all
